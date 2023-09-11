@@ -4,11 +4,13 @@ pipeline {
             label "maven"
         }
     }
-
+environment {
+    PATH = "/opt/maven/bin:$PATH"
+}
     stages {
-        stage('clone-code') {
+        stage('build') {
             steps {
-                git branch: 'main', url: 'https://github.com/rajivsiddiqui/AR-p2.git'
+                sh 'mvn clean deploy'
             }
         }
     }
