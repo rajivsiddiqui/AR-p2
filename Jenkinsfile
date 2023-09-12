@@ -4,11 +4,13 @@ pipeline {
             label "maven-2"
         }
     }
-
+environment {
+    PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
+}
     stages {
         stage('build') {
             steps {
-                git branch: 'main', url: 'https://github.com/rajivsiddiqui/AR-p2.git'
+                sh 'mvn clean deploy'
             }
         }
     }
